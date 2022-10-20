@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 # Import Splinter, BeautifulSoup and Pandas
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
@@ -134,4 +128,3 @@ def hemisphere_image_urls(browser):
 if __name__ == "__main__":
     # If running as script, print scraped data
     print(scrape_all())
-

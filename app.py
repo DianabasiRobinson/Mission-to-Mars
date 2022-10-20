@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 # Import tools
 from flask import Flask, render_template, redirect, url_for
 from flask_pymongo import PyMongo
@@ -33,4 +27,3 @@ def scrape():
 # Run Flask
 if __name__ == "__main__":
     app.run(debug=True)
-
