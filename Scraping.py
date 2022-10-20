@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 # Import Splinter, BeautifulSoup and Pandas
@@ -11,26 +11,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import datetime as dt
 
-
-# In[2]:
-
-
 def scrape_all():
     # Initiate headless driver for deployment
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=True)
 
+    news_title, news_paragraph = mars_news(browser)
 
-# In[4]:
-
-
-news_title, news_paragraph = mars_news(browser)
-
-
-# In[ ]:
-
-
-# Run all scraping functions and store results in dictionary
+    # Run all scraping functions and store results in dictionary
     data = {
       "news_title": news_title,
       "news_paragraph": news_paragraph,
@@ -39,17 +27,9 @@ news_title, news_paragraph = mars_news(browser)
       "hemisphere_image_urls": hemisphere_image_urls(browser),
       "last_modified": dt.datetime.now()
     }
-
-
-# In[ ]:
-
-
-# Stop webdriver and return data
-   browser.quit()
-   return data
-
-
-# In[ ]:
+    # Stop webdriver and return data
+    browser.quit()
+    return data
 
 
 def mars_news(browser):
@@ -77,9 +57,6 @@ def mars_news(browser):
         return None, None
 
     return news_title, news_p
-
-
-# In[ ]:
 
 
 def featured_image(browser):
@@ -110,9 +87,6 @@ def featured_image(browser):
     return img_url
 
 
-# In[ ]:
-
-
 def mars_facts():
     # Add try/except for error handling
     try:
@@ -129,10 +103,6 @@ def mars_facts():
 
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html(classes="table table-striped")
-
-
-# In[ ]:
-
 
 def hemisphere_image_urls(browser):
     # 1. Use browser to visit the URL 
@@ -155,39 +125,13 @@ def hemisphere_image_urls(browser):
             return None
         browser.back()
         hemisphere_image_urls.append(hemispheres)
-
-
-# In[ ]:
-
-
-# Create a dictionary of list of dictionaries
+    
+    # Create a dictionary of list of dictionaries
     hemisphere_images={"hemispheres_data": hemisphere_image_urls}
 
     return hemisphere_images
 
-
-# In[ ]:
-
-
 if __name__ == "__main__":
     # If running as script, print scraped data
     print(scrape_all())
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
